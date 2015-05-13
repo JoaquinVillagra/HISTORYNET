@@ -74,10 +74,15 @@ WSGI_APPLICATION = 'django1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# Testing Database MySql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_historynet',
+        'USER': 'db_historynet',
+        'PASSWORD': '7PjRRarfTyKbqmTA',
+        'HOST': '208.43.237.42',
+        'PORT': '3306',
     }
 }
 
@@ -85,9 +90,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Chile/Continental'
 
 USE_I18N = True
 
