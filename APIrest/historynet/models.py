@@ -1,3 +1,8 @@
+# Falta CS-014 , CS-021, CS-022 en el modelado de database.
+# http://prntscr.com/75azso
+
+
+
 # Documentacion completa https://docs.djangoproject.com/en/1.8/topics/db/models/
 from django.db import models
 
