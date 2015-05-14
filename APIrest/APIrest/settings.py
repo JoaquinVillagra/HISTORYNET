@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'APIrest.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# Usando sqlite3 para términos de test.
+# Usando sqlite3 para terminos de test.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
