@@ -1,9 +1,10 @@
+# Documentacion completa https://docs.djangoproject.com/en/1.8/topics/db/models/
 from django.db import models
 
 
 #Ejemplo de creacion de tablas en db
 #class TABLE_NAME(Models.Model)
-    #nombre_columna = models.(tipo de columna, consultar api https://docs.djangoproject.com/en/1.8/topics/db/models/#field-types ).
+    #nombre_columna = models.tipo de columna, consultar api https://docs.djangoproject.com/en/1.8/topics/db/models/#field-types  (ARGUMENTOS)
 
 class login(models.Model):
 	user_name = models.CharField(max_length=10)
@@ -12,3 +13,78 @@ class login(models.Model):
 
 
 
+#Ejemplos que podria usar. (Ejemplos comunes: https://docs.djangoproject.com/en/1.8/ref/models/fields/#common-model-field-options )
+
+#primary_key si no es definida, se asume un "id" como primario y autoincrement
+#uso:
+#	rut = models.CharField(max_length=100, primary_key=True)
+
+#like = models.IntegerField(default=0)
+
+#unique=True unico en la tabla
+
+
+#Seleccion de algo en base a texto mas corto? xd
+#Combo box de M o F y en database queda guardado completo esto.
+#	SEXO_CHOISE = (
+#		('M', 'Masculino'),
+#		('F', 'Femenino'),
+#	)
+#	sexo = models.CharField(max_length=1, choices=SEXO_CHOISE)
+
+
+# Meta, opcional. https://docs.djangoproject.com/en/1.8/topics/db/models/#meta-options
+#class Ox(models.Model):
+#    horn_length = models.IntegerField()
+
+#    class Meta:
+#        ordering = ["horn_length"]
+
+# Formas de ordenar: https://docs.djangoproject.com/en/1.8/ref/models/options/#django.db.models.Options.ordering
+
+
+
+
+#Relaciones en database https://docs.djangoproject.com/en/1.8/topics/db/models/#relationships
+##################
+#Muchos a uno ####
+##################
+# Un auto tiene el campo tecnico.Un tecnico puede hacer muchos autos pero un auto solo fue hecho por un tecnico. Usar ForeignKey
+# Ejemplo grande: https://docs.djangoproject.com/en/1.8/topics/db/examples/many_to_one/
+
+
+#class Tecnico(models.Model):
+#    # ...
+#    pass
+
+#class Car(models.Model):
+#    tecnico = models.ForeignKey(Tecnico)
+#    # ...
+
+###################
+#Muchos a muchos###
+###################
+# Una pizza puede tener muchos ingredientes. Un ingrediente puede estar en muchas pizzas. Usar ManyToManyField
+# Ejemplo grande: https://docs.djangoproject.com/en/1.8/topics/db/examples/many_to_many/
+
+#class Topping(models.Model):
+#    # ...
+#    pass
+
+#class Pizza(models.Model):
+#    # ...
+#    toppings = models.ManyToManyField(Topping)
+
+
+###############
+# Uno a Uno ###
+###############
+# Usar OneToOneField
+# Ejemplo grande: https://docs.djangoproject.com/en/1.8/topics/db/examples/one_to_one/
+
+
+
+
+
+# Algo asi como los procedimientos almacenados? no estoy seguro falta revisar bien
+# https://docs.djangoproject.com/en/1.8/topics/db/models/#model-methods
