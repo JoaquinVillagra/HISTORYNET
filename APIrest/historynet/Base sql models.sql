@@ -53,8 +53,8 @@ CREATE TABLE "historynet_comentario" (
 CREATE TABLE "historynet_lugares_favoritos_user_id" (
     "id" integer NOT NULL PRIMARY KEY,
     "lugares_favoritos_id" integer NOT NULL,
-    "login_id" integer NOT NULL REFERENCES "historynet_login" ("id"),
-    UNIQUE ("lugares_favoritos_id", "login_id")
+    "usuario_id" integer NOT NULL REFERENCES "historynet_usuario" ("login_id"),
+    UNIQUE ("lugares_favoritos_id", "usuario_id")
 )
 ;
 CREATE TABLE "historynet_lugares_favoritos_lugar_id" (
@@ -70,21 +70,21 @@ CREATE TABLE "historynet_lugares_favoritos" (
 ;
 CREATE TABLE "historynet_valoraciones_comentarios" (
     "id" integer NOT NULL PRIMARY KEY,
-    "user_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_login" ("id"),
+    "user_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_usuario" ("login_id"),
     "comentario_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_comentario" ("id"),
     "valoracion" integer NOT NULL
 )
 ;
 CREATE TABLE "historynet_valoraciones_info_adicional" (
     "id" integer NOT NULL PRIMARY KEY,
-    "user_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_login" ("id"),
+    "user_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_usuario" ("login_id"),
     "info_adicional_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_informacion_adicional" ("id"),
     "valoracion" integer NOT NULL
 )
 ;
 CREATE TABLE "historynet_valoraciones_lugar" (
     "id" integer NOT NULL PRIMARY KEY,
-    "user_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_login" ("id"),
+    "user_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_usuario" ("login_id"),
     "lugar_id_id" integer NOT NULL UNIQUE REFERENCES "historynet_lugar" ("id"),
     "valoracion" integer NOT NULL
 )
