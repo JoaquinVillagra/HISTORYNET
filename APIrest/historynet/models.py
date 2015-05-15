@@ -1,15 +1,29 @@
-# Falta CS-014 , CS-021, CS-022 en el modelado de database.
+# Falta CS-014, CS-018 , CS-021, CS-022 en el modelado de database.
 # http://prntscr.com/75azso
 
 from django.db import models
+ 
+# El campo "level" representa jerarquia de usuario (el numero de cada uno es solo una idea)
+# 0 = usuario normal
+# 1 = super usuario (ideas pero nada especial)
+# 4 = moderador (ideas pero nada especial)
+# 5 = administrador
+
+
+# El campo "estado" tiene distintos valores de representacion:
+# 0 = desactivado por usuario (only login)
+# 1 = habilitado
+# 2 = en pedido de habilitacion
+# 3 = bloqueado por admin
+
 
 
 class Login(models.Model):
 	user_name = models.CharField(max_length = 50)
 	password = models.CharField(max_length = 50)
 	email = models.CharField(max_length = 100)
-	level = models.SmallIntegerField()
-	estado = models.SmallIntegerField()
+	level = models.SmallIntegerField(default = 0)
+	estado = models.SmallIntegerField(default = 1)
 	last_login = models.DateTimeField(auto_now = True)
 
 class Usuario(models.Model):
@@ -26,42 +40,42 @@ class Lugar(models.Model):
 	longitud = models.FloatField()
 	latitud = models.FloatField()
 	fecha = models.DateTimeField(auto_now_add = True)
-	valoracion = models.FloatField()
-	denuncia = models.IntegerField()
-	estado = models.SmallIntegerField()
+	valoracion = models.FloatField(default = 0)
+	denuncia = models.IntegerField(default = 0)
+	estado = models.SmallIntegerField(default = 2) # Un lugar debe ser validado por un administrador
 
 class Informacion_adicional(models.Model):
 	lugar_id = models.ForeignKey(Lugar) #relacion 1 a muchos entre lugar e informacion add
 	mensaje = models.CharField(max_length = 1024)
 	fecha = models.DateTimeField(auto_now_add = True)
-	denuncia = models.IntegerField()
-	estado = models.SmallIntegerField()
+	denuncia = models.IntegerField(default = 0)
+	estado = models.SmallIntegerField(default = 2) # Una informacion adicional debe ser validada por un administrador
 
 class Comentario(models.Model):
 	user_id = models.ForeignKey(Usuario) #relacion entre usuario y comentario (un user puede hacer varios comentarios)
 	lugar_id = models.ForeignKey(Lugar) #relacion entre lugar y comentario (Un lugar puede tener varios comentarios)
 	mensaje = models.CharField(max_length = 1024)
 	fecha = models.DateTimeField(auto_now_add = True)
-	valoracion = models.FloatField()
-	denuncia = models.IntegerField()
-	estado = models.SmallIntegerField()
+	valoracion = models.FloatField(default = 0)
+	denuncia = models.IntegerField(default = 0)
+	estado = models.SmallIntegerField(default = 1)
 
 class Lugares_favoritos(models.Model):
-	user_id = models.ManyToManyField(Login) #relacion n a n entre lugares y usuarios para registro de favoritos
+	user_id = models.ManyToManyField(Usuario) #relacion n a n entre lugares y usuarios para registro de favoritos
 	lugar_id = models.ManyToManyField(Lugar)
 
 class Valoraciones_comentarios(models.Model):
-	user_id = models.OneToOneField(Login) #relacion 1 a 1 entre usuario y comentario para registro de valoracion
+	user_id = models.OneToOneField(Usuario) #relacion 1 a 1 entre usuario y comentario para registro de valoracion
 	comentario_id = models.OneToOneField(Comentario)
 	valoracion = models.IntegerField()
 
 class Valoraciones_info_adicional(models.Model):
-	user_id = models.OneToOneField(Login) #relacion 1 a 1 entre usuario e info add para registro de valoracion
+	user_id = models.OneToOneField(Usuario) #relacion 1 a 1 entre usuario e info add para registro de valoracion
 	info_adicional_id = models.OneToOneField(Informacion_adicional)
 	valoracion = models.IntegerField()
 
 class Valoraciones_lugar(models.Model):
-	user_id = models.OneToOneField(Login) #relacion 1 a 1 entre usuario y lugar para registro de valoracion
+	user_id = models.OneToOneField(Usuario) #relacion 1 a 1 entre usuario y lugar para registro de valoracion
 	lugar_id = models.OneToOneField(Lugar)
 	valoracion = models.IntegerField()
 
