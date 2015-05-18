@@ -1,6 +1,4 @@
-#from django.contrib.auth.models import Login, Usuario
-from APIrest.historynet.models import Login, Usuario
-
+from .models import Login, Usuario
 from rest_framework import serializers
 
 class LoginSerializer(serializers.HyperlinkedModelSerializer):
