@@ -1,6 +1,6 @@
 from .models import Usuario, Lugar, Informacion_adicional
 from rest_framework import viewsets
-from .serializers import LoginSerializer, UsuarioSerializer, Informacion_adicionalSerializer
+from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicionalSerializer
 
 class LoginViewSet(viewsets.ModelViewSet):
     queryset = Login.objects.all()
