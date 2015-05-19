@@ -1,4 +1,4 @@
-from .models import Login, Usuario, Informacion_adicional
+from .models import Usuario, Lugar, Informacion_adicional
 from rest_framework import viewsets
 from .serializers import LoginSerializer, UsuarioSerializer, Informacion_adicionalSerializer
 
