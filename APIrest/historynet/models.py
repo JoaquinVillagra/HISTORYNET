@@ -17,28 +17,25 @@ from django.db import models
 # 3 = bloqueado por admin
 
 
-
-class Login(models.Model):
+class Usuario(models.Model):
 	user_name = models.CharField(max_length = 50)
 	password = models.CharField(max_length = 50)
 	email = models.CharField(max_length = 100)
-	level = models.SmallIntegerField(default = 0)
-	estado = models.SmallIntegerField(default = 1)
-	last_login = models.DateTimeField(auto_now = True)
-
-class Usuario(models.Model):
-	login = models.OneToOneField(Login, primary_key=True) #relacion 1 a 1 entre login y usuario
 	nombre = models.CharField(max_length = 150)
 	apellido = models.CharField(max_length = 150)
 	pais = models.CharField(max_length = 15)
 	sexo = models.CharField(max_length = 1)
-
+	level = models.SmallIntegerField(default = 0)
+	estado = models.SmallIntegerField(default = 1)
+	last_login = models.DateTimeField(auto_now = True)
+	
 class Lugar(models.Model):
 	nombre = models.CharField(max_length = 150)
 	direccion = models.CharField(max_length = 1024)
 	informacion_primaria = models.CharField(max_length = 1024)
 	longitud = models.FloatField()
 	latitud = models.FloatField()
+	#imagen = models.ImageField(upload_to = 'foto_lugar')
 	fecha = models.DateTimeField(auto_now_add = True)
 	valoracion = models.FloatField(default = 0)
 	denuncia = models.IntegerField(default = 0)
