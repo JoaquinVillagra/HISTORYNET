@@ -39,7 +39,7 @@ class Lugar(models.Model):
 	informacion_primaria = models.CharField(max_length = 1024)
 	longitud = models.FloatField()
 	latitud = models.FloatField()
-	#imagen = models.ImageField(upload_to = 'foto_lugar')
+	imagen = models.ImageField(upload_to = 'foto_lugar')
 	fecha = models.DateTimeField(auto_now_add = True)
 	valoracion = models.FloatField(default = 0)
 	denuncia = models.IntegerField(default = 0)

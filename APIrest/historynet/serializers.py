@@ -1,4 +1,4 @@
-from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_info_adicional, Valoraciones_lugar
+from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
 from rest_framework import serializers
 
 class LugarSerializer(serializers.HyperlinkedModelSerializer):
