@@ -32,6 +32,8 @@ class Usuario(models.Model):
 	def __unicode__(self):
 		return self.user_name
 
+	class Meta:
+        ordering = ('user_name',)
 
 class Lugar(models.Model):
 	nombre = models.CharField(max_length = 150)
@@ -46,11 +48,13 @@ class Lugar(models.Model):
 	estado = models.SmallIntegerField(default = 2) # Un lugar debe ser validado por un administrador
 
 	def url_imagen(self):
-		return 'http://localhost:8000/media/%s' % self.imagen
+		return 'http://46.101.184.198:8000/media/%s' % self.imagen
 
 	def __unicode__(self):
 		return self.nombre
 
+	class Meta:
+        ordering = ('nombre',)
 
 
 class Informacion_adicional(models.Model):
@@ -63,6 +67,8 @@ class Informacion_adicional(models.Model):
 	def __unicode__(self):
 		return self.mensaje
 
+	class Meta:
+        ordering = ('fecha',)
 
 
 class Comentario(models.Model):
@@ -76,6 +82,9 @@ class Comentario(models.Model):
 
 	def __unicode__(self):
 		return self.mensaje
+
+	class Meta:
+        ordering = ('fecha',)
 
 
 class Lugares_favoritos(models.Model):

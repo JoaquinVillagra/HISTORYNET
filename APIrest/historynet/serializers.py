@@ -1,7 +1,7 @@
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
 from rest_framework import serializers
 
-class LugarSerializer(serializers.HyperlinkedModelSerializer):
+class LugarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lugar
         fields = (
@@ -20,7 +20,7 @@ class LugarSerializer(serializers.HyperlinkedModelSerializer):
         	)
 
 
-class UsuarioSerializer(serializers.HyperlinkedModelSerializer):
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = (
@@ -38,7 +38,7 @@ class UsuarioSerializer(serializers.HyperlinkedModelSerializer):
         	'last_login',
         	)
 
-class Informacion_adicionalSerializer(serializers.HyperlinkedModelSerializer):
+class Informacion_adicionalSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Informacion_adicional
 		fields = (
@@ -50,7 +50,7 @@ class Informacion_adicionalSerializer(serializers.HyperlinkedModelSerializer):
         	'estado',
         	)
 
-class ComentarioSerializer(serializers.HyperlinkedModelSerializer):
+class ComentarioSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Comentario
 		fields = (
@@ -64,7 +64,7 @@ class ComentarioSerializer(serializers.HyperlinkedModelSerializer):
 			'estado',
 			)
 
-class Lugares_favoritosSerializer(serializers.HyperlinkedModelSerializer):
+class Lugares_favoritosSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Lugares_favoritos
 		fields = (
@@ -73,7 +73,7 @@ class Lugares_favoritosSerializer(serializers.HyperlinkedModelSerializer):
 			'lugar_id',
 			)
 
-class Valoraciones_comentariosSerializer(serializers.HyperlinkedModelSerializer):
+class Valoraciones_comentariosSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Valoraciones_lugar
 		fields = (
@@ -82,7 +82,7 @@ class Valoraciones_comentariosSerializer(serializers.HyperlinkedModelSerializer)
 			'valoracion',
 			)
 
-class Valoraciones_info_adicionalSerializer(serializers.HyperlinkedModelSerializer):
+class Valoraciones_info_adicionalSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Valoraciones_info_adicional
 		fields = (
@@ -92,7 +92,7 @@ class Valoraciones_info_adicionalSerializer(serializers.HyperlinkedModelSerializ
 			'valoracion',
 			)
 
-class Valoraciones_lugarSerializer(serializers.HyperlinkedModelSerializer):
+class Valoraciones_lugarSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Valoraciones_lugar
 		fields = (
