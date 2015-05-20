@@ -9,7 +9,7 @@ class LugarAdmin(admin.ModelAdmin):
 		tag = "<img src='%s' >" % url
 		return tag
 
-	#imagen_lugar.allow_tags = True
+	imagen_lugar.allow_tags = True
 
 
 admin.site.register(Usuario)
