@@ -30,7 +30,7 @@ class Usuario(models.Model):
 	last_login = models.DateTimeField(auto_now = True)
 	
 	def get_full_name(self):
-        return (self.nombre + " " + self.apellido)
+		return (self.nombre + " " + self.apellido)
 
 	def __unicode__(self):
 		return self.user_name
