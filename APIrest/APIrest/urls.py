@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
 admin.autodiscover()
-
+from django.conf import settings
 from rest_framework import routers
 from historynet import views
 from rest_framework.urlpatterns import format_suffix_patterns
