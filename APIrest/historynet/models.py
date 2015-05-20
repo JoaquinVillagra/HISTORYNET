@@ -29,6 +29,10 @@ class Usuario(models.Model):
 	estado = models.SmallIntegerField(default = 1)
 	last_login = models.DateTimeField(auto_now = True)
 	
+	def __unicode__(self):
+		return self.user_name
+
+
 class Lugar(models.Model):
 	nombre = models.CharField(max_length = 150)
 	direccion = models.CharField(max_length = 1024)
@@ -41,12 +45,22 @@ class Lugar(models.Model):
 	denuncia = models.IntegerField(default = 0)
 	estado = models.SmallIntegerField(default = 2) # Un lugar debe ser validado por un administrador
 
+	def __unicode__(self):
+		return self.nombre
+
+
+
 class Informacion_adicional(models.Model):
 	lugar_id = models.ForeignKey(Lugar) #relacion 1 a muchos entre lugar e informacion add
 	mensaje = models.CharField(max_length = 1024)
 	fecha = models.DateTimeField(auto_now_add = True)
 	denuncia = models.IntegerField(default = 0)
 	estado = models.SmallIntegerField(default = 2) # Una informacion adicional debe ser validada por un administrador
+	
+	def __unicode__(self):
+		return self.mensaje
+
+
 
 class Comentario(models.Model):
 	user_id = models.ForeignKey(Usuario) #relacion entre usuario y comentario (un user puede hacer varios comentarios)
@@ -56,6 +70,10 @@ class Comentario(models.Model):
 	valoracion = models.FloatField(default = 0)
 	denuncia = models.IntegerField(default = 0)
 	estado = models.SmallIntegerField(default = 1)
+
+	def __unicode__(self):
+		return self.mensaje
+
 
 class Lugares_favoritos(models.Model):
 	user_id = models.ManyToManyField(Usuario) #relacion n a n entre lugares y usuarios para registro de favoritos
