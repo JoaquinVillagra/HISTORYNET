@@ -31,7 +31,7 @@ router.register(r'comentario', views.ComentarioViewSet)
 router.register(r'lugares_favoritos', views.Lugares_favoritosViewSet)
 router.register(r'valoraciones_comentarios', views.Valoraciones_comentariosViewSet)
 router.register(r'valoraciones_info_adicional', views.Valoraciones_info_adicionalViewSet)
-router.register(r'valoraciones_lugar', views.valoraciones_lugarViewSet)
+router.register(r'valoraciones_lugar', views.Valoraciones_lugarViewSet)
 
 
 # Wire up our API using automatic URL routing.
