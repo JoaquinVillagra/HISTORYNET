@@ -45,6 +45,9 @@ class Lugar(models.Model):
 	denuncia = models.IntegerField(default = 0)
 	estado = models.SmallIntegerField(default = 2) # Un lugar debe ser validado por un administrador
 
+	def url_imagen(self):
+		return 'http://localhost:8000/media/%s' % self.imagen
+
 	def __unicode__(self):
 		return self.nombre
 

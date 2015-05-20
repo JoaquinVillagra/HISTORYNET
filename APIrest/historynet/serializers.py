@@ -12,6 +12,7 @@ class LugarSerializer(serializers.HyperlinkedModelSerializer):
         	'informacion_primaria',
         	'longitud',
         	'latitud',
+        	'imagen',
         	'fecha',
         	'valoracion',
         	'denuncia',
