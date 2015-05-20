@@ -33,7 +33,7 @@ class Usuario(models.Model):
 		return self.user_name
 
 	class Meta:
-        ordering = ['-user_name',]
+		ordering = ('user_name',)
 
 class Lugar(models.Model):
 	nombre = models.CharField(max_length = 150)
@@ -52,9 +52,9 @@ class Lugar(models.Model):
 
 	def __unicode__(self):
 		return self.nombre
-	
+
 	class Meta:
-        ordering = ['-nombre',]
+		ordering = ('nombre',)
 
 
 class Informacion_adicional(models.Model):
@@ -66,9 +66,9 @@ class Informacion_adicional(models.Model):
 	
 	def __unicode__(self):
 		return self.mensaje
-	
+
 	class Meta:
-        ordering = ['-fecha',]
+		ordering = ('fecha',)
 
 
 class Comentario(models.Model):
@@ -82,9 +82,10 @@ class Comentario(models.Model):
 
 	def __unicode__(self):
 		return self.mensaje
-	
+
 	class Meta:
-        ordering = ['-fecha',]
+		ordering = ('fecha',)
+
 
 class Lugares_favoritos(models.Model):
 	user_id = models.ManyToManyField(Usuario) #relacion n a n entre lugares y usuarios para registro de favoritos
