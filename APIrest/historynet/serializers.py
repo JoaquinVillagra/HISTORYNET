@@ -4,10 +4,6 @@ from rest_framework import serializers
 class LugarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lugar
-
-        def imagen_url(self, lugar):
-        	return lugar.url_imagen()
-
         fields = (
         	'url',
         	'id',
@@ -16,7 +12,7 @@ class LugarSerializer(serializers.ModelSerializer):
         	'informacion_primaria',
         	'longitud',
         	'latitud',
-        	'imagen_url',
+        	'imagen',
         	'fecha',
         	'valoracion',
         	'denuncia',
