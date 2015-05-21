@@ -1,6 +1,15 @@
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
 from rest_framework import viewsets
 from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicionalSerializer, ComentarioSerializer, Lugares_favoritosSerializer, Valoraciones_comentariosSerializer, Valoraciones_info_adicionalSerializer, Valoraciones_lugarSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+class TestView(APIView):
+
+    def get(self,request,format=None):
+        return Response({'mensaje':'test API'})
+
+testview = TestView.as_view()
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()

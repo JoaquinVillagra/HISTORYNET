@@ -12,7 +12,7 @@ class LugarSerializer(serializers.ModelSerializer):
         	'informacion_primaria',
         	'longitud',
         	'latitud',
-        	'imagen',
+        	#'imagen',
         	'fecha',
         	'valoracion',
         	'denuncia',

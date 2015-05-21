@@ -45,14 +45,14 @@ class Lugar(models.Model):
 	informacion_primaria = models.CharField(max_length = 1024)
 	longitud = models.FloatField()
 	latitud = models.FloatField()
-	imagen = models.ImageField(upload_to = 'foto_lugar')
+	#imagen = models.ImageField(upload_to = 'foto_lugar')
 	fecha = models.DateTimeField(auto_now_add = True)
 	valoracion = models.FloatField(default = 0)
 	denuncia = models.IntegerField(default = 0)
 	estado = models.SmallIntegerField(default = 2) # Un lugar debe ser validado por un administrador
 
-	def url_imagen(self):
-		return 'http://46.101.184.198:8000/media/%s' % self.imagen
+	#def url_imagen(self):
+	#	return 'http://46.101.184.198:8000/media/%s' % self.imagen
 
 	def __unicode__(self):
 		return self.nombre
@@ -92,21 +92,21 @@ class Comentario(models.Model):
 
 
 class Lugares_favoritos(models.Model):
-	user_id = models.ManyToManyField(Usuario) #relacion n a n entre lugares y usuarios para registro de favoritos
-	lugar_id = models.ManyToManyField(Lugar)
+	user_id = models.ForeignKey(Usuario) #relacion n a n entre lugares y usuarios para registro de favoritos
+	lugar_id = models.ForeignKey(Lugar)
 
 class Valoraciones_comentarios(models.Model):
-	user_id = models.OneToOneField(Usuario) #relacion 1 a 1 entre usuario y comentario para registro de valoracion
-	comentario_id = models.OneToOneField(Comentario)
+	user_id = models.ForeignKey(Usuario) #relacion 1 a 1 entre usuario y comentario para registro de valoracion
+	comentario_id = models.ForeignKey(Comentario)
 	valoracion = models.IntegerField()
 
 class Valoraciones_info_adicional(models.Model):
-	user_id = models.OneToOneField(Usuario) #relacion 1 a 1 entre usuario e info add para registro de valoracion
-	info_adicional_id = models.OneToOneField(Informacion_adicional)
+	user_id = models.ForeignKey(Usuario) #relacion 1 a 1 entre usuario e info add para registro de valoracion
+	info_adicional_id = models.ForeignKey(Informacion_adicional)
 	valoracion = models.IntegerField()
 
 class Valoraciones_lugar(models.Model):
-	user_id = models.OneToOneField(Usuario) #relacion 1 a 1 entre usuario y lugar para registro de valoracion
-	lugar_id = models.OneToOneField(Lugar)
+	user_id = models.ForeignKey(Usuario) #relacion 1 a 1 entre usuario y lugar para registro de valoracion
+	lugar_id = models.ForeignKey(Lugar)
 	valoracion = models.IntegerField()
 
