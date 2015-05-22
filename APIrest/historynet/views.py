@@ -4,6 +4,7 @@ from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicion
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 #Vista donde se puede consultar por todos los usuarios o por
 #un usuario en especifico con el username (login)
@@ -16,8 +17,10 @@ class UsuarioView(APIView):
             users = get_object_or_404(Usuario,user_name=username)
             many = False
         else:
-            users = Usuario.objects.all()
+            users = list(Usuario.objects.all())
             many = True
+            if not my_objects:
+                raise Http404("No hay usuarios registrados.")
         response = self.serializer_class(users,many=many)
         return Response(response.data)
 
