@@ -43,7 +43,8 @@ class LugarSerializer(serializers.ModelSerializer):
         	'fecha',
         	'valoracion',
         	'denuncia',
-        	'estado'
+        	'estado',
+        	'a_distancia_b'
         	)
 
 class Lugar2Serializer(serializers.ModelSerializer):
@@ -52,23 +53,6 @@ class Lugar2Serializer(serializers.ModelSerializer):
         fields = (
         	'id',
         	'nombre',
-        	)
-class LugarABSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Lugar
-        fields = (
-        	'id',
-        	'nombre',
-        	'direccion',
-        	'informacion_primaria',
-        	'longitud',
-        	'latitud',
-        	#'imagen',
-        	'fecha',
-        	'valoracion',
-        	'denuncia',
-        	'estado',
-        	'a_distancia_b'
         	)
 
 class Informacion_adicionalSerializer(serializers.ModelSerializer):
