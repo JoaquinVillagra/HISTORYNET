@@ -24,7 +24,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'usuario', views.UsuarioViewSet)
+#router.register(r'usuario', views.UsuarioViewSet)
 router.register(r'lugar', views.LugarViewSet)
 router.register(r'informacion_adicional', views.Informacion_adicionalViewSet)
 router.register(r'comentario', views.ComentarioViewSet)

@@ -5,7 +5,6 @@ class LugarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lugar
         fields = (
-        	'url',
         	'id',
         	'nombre',
         	'direccion',
@@ -24,7 +23,6 @@ class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = (
-        	'url',
         	'id',
         	'user_name',
         	'password',

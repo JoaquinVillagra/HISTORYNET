@@ -18,7 +18,7 @@ from django.db import models
 
 
 class Usuario(models.Model):
-	user_name = models.CharField(max_length = 50)
+	user_name = models.CharField(max_length = 50, unique = True)
 	password = models.CharField(max_length = 50)
 	email = models.CharField(max_length = 100)
 	nombre = models.CharField(max_length = 150)
