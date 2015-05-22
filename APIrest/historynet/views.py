@@ -35,51 +35,51 @@ class UsuarioView(APIView):
         response = self.serializer_class(users,many=many)
         return Response(response.data)
 
-    def post(self,request,format=None):
+    # Deshabilitado hasta que lo haga funcionar :c
+    #def post(self,request,format=None):
 
-        new_user = self.serializer_class(data=request.DATA)
-        if new_user.is_valid():
-            print new_user
-            obj = new_user.object
-            print obj
-            obj.save()
-            resp = self.serializer_class(obj,many=False)
-            return Response(resp.data)
-        else:
-            return Response(new_user.errors)
+        #new_user = self.serializer_class(data=request.DATA)
+        #if new_user.is_valid():
+            #obj = new_user.object
+            #obj.save()
+            #resp = self.serializer_class(obj,many=False)
+            #return Response(resp.data)
+        #else:
+            #return Response(new_user.errors)
 
+class LugarView(APIView):
 
-
-
-
-class UsuarioViewSet(viewsets.ModelViewSet):
-    queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerializer
-
-class LugarViewSet(viewsets.ModelViewSet):
-    queryset = Lugar.objects.all()
     serializer_class = LugarSerializer
 
-class ComentarioViewSet(viewsets.ModelViewSet):
-    queryset = Comentario.objects.all()
+    def get(self,request,id=None,format=None):
+        if id != None:
+            lugares = get_object_or_404(Lugar,pk=id)
+            many = False
+        else
+            lugares = Lugar.objects.all()
+            many = True
+        response = self.serializer_class(lugares,many=many)
+        return Response(response.data)
+
+class LugaresCercanosView(APIView):
+
+    serializer_class = LugarSerializer
+
+    def get(self,request,lat=None,log=None,format=None):
+        if lat != None & log != None:
+            raise Http404("Bien test")
+        else
+            raise Http404("Error")
+
+class ComentarioView(APIView):
+
     serializer_class = ComentarioSerializer
 
-class Lugares_favoritosViewSet(viewsets.ModelViewSet):
-    queryset = Lugares_favoritos.objects.all()
-    serializer_class = Lugares_favoritosSerializer
+    def get(self,request,lugar_id=None,format=None):
+        if lugar_id != None:
+            comentarios = get_list_or_404(Comentario,lugar_id=lugar_id)
+        else
+            comentarios = Comentario.objects.all()
+        response = self.serializer_class(comentarios,many=True)
+        return Response(response.data)
 
-class Valoraciones_comentariosViewSet(viewsets.ModelViewSet):
-    queryset = Valoraciones_comentarios.objects.all()
-    serializer_class = Valoraciones_comentariosSerializer
-
-class Informacion_adicionalViewSet(viewsets.ModelViewSet):
-	queryset = Informacion_adicional.objects.all()
-	serializer_class = Informacion_adicionalSerializer
-
-class Valoraciones_info_adicionalViewSet(viewsets.ModelViewSet):
-    queryset = Valoraciones_info_adicional.objects.all()
-    serializer_class = Valoraciones_info_adicionalSerializer
-
-class Valoraciones_lugarViewSet(viewsets.ModelViewSet):
-    queryset = Valoraciones_lugar.objects.all()
-    serializer_class = Valoraciones_lugarSerializer

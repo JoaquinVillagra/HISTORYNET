@@ -1,23 +1,6 @@
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
 from rest_framework import serializers
 
-class LugarSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Lugar
-        fields = (
-        	'id',
-        	'nombre',
-        	'direccion',
-        	'informacion_primaria',
-        	'longitud',
-        	'latitud',
-        	#'imagen',
-        	'fecha',
-        	'valoracion',
-        	'denuncia',
-        	'estado'
-        	)
-
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,6 +19,25 @@ class UsuarioSerializer(serializers.ModelSerializer):
         	'last_login',
         	)
         read_only_fields = ('level','estado')
+
+
+class LugarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lugar
+        fields = (
+        	'id',
+        	'nombre',
+        	'direccion',
+        	'informacion_primaria',
+        	'longitud',
+        	'latitud',
+        	#'imagen',
+        	'fecha',
+        	'valoracion',
+        	'denuncia',
+        	'estado'
+        	)
+
 
 class Informacion_adicionalSerializer(serializers.ModelSerializer):
 	class Meta:

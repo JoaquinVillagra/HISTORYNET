@@ -25,13 +25,6 @@ from rest_framework.urlpatterns import format_suffix_patterns
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 #router.register(r'usuario', views.UsuarioViewSet)
-router.register(r'lugar', views.LugarViewSet)
-router.register(r'informacion_adicional', views.Informacion_adicionalViewSet)
-router.register(r'comentario', views.ComentarioViewSet)
-router.register(r'lugares_favoritos', views.Lugares_favoritosViewSet)
-router.register(r'valoraciones_comentarios', views.Valoraciones_comentariosViewSet)
-router.register(r'valoraciones_info_adicional', views.Valoraciones_info_adicionalViewSet)
-router.register(r'valoraciones_lugar', views.Valoraciones_lugarViewSet)
 
 
 
@@ -41,6 +34,15 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^consultar_usuario/$',views.UsuarioView.as_view()),
     url(r'^consultar_usuario/(?P<username>\w+)/$',views.UsuarioView.as_view()),
+
+    url(r'^consultar_comentarios/$',views.ComentarioView.as_view()),
+    url(r'^consultar_comentarios/(?P<lugar_id>\d+)/$',views.ComentarioView.as_view()),
+
+    url(r'^consultar_lugar/$',views.LugarView.as_view()),
+    url(r'^consultar_lugar/(?P<id>\d+)/$',views.LugarView.as_view()),
+    url(r'^consultar_lugar_cercano/(?P<lat>-?(\d+\.\d+))/(?P<log>-?(\d+\.\d+))/$',views.LugaresCercanosView.as_view()),
+    
+
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT})
