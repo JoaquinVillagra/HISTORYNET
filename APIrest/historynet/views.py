@@ -71,9 +71,7 @@ class LugaresCercanosView(APIView):
             
             lugares = Lugar.objects.all()
             for lugar in lugares:
-                print lugar.latitud
-                print lugar.longitud
-                #print haversine(lat,log,lugar.latitud,lugar.longitud)
+                print haversine(float(lat),float(log),float(lugar.latitud),float(lugar.longitud))
             
             return Response({'latitud':' '+lat,'longitud':' '+log,'distancia':' '+dist})
         else:
