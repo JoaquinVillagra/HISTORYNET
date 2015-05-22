@@ -70,15 +70,11 @@ class LugaresCercanosView(APIView):
         if lat != None and log != None and dist != None:
             
             lugares = Lugar.objects.all()
-            print dist
-            print lugares
             lugares_dist = []
             for lugar in lugares:
                 a = haversine(float(log),float(lat),float(lugar.longitud),float(lugar.latitud))
-                if a <= dist:
-                    print a
+                if a <= float(dist):
                     lugares_dist.append(lugar)
-            print lugares_dist
             response = self.serializer_class(lugares_dist,many=True)
             return Response(response.data)
         else:
