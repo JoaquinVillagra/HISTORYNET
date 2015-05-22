@@ -70,15 +70,12 @@ class LugaresCercanosView(APIView):
         if lat != None and log != None and dist != None:
             
             lugares = Lugar.objects.all()
-            print lat
-            print log
             for lugar in lugares:
-                print lugar
-                print lugar.latitud
-                print lugar.longitud
-                print haversine(float(log),float(lat),float(lugar.longitud),float(lugar.latitud))
-            
-            return Response({'longitud':' '+log,'latitud':' '+lat,'distancia':' '+dist})
+                a = haversine(float(log),float(lat),float(lugar.longitud),float(lugar.latitud))
+                if a <= dist:
+                    lugares_dist += lugar
+            response = self.serializer_class(lugares_dist,many=True)
+            return Response(response.data)
         else:
             raise Http404("Error")
 
