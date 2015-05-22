@@ -43,6 +43,23 @@ class LugarSerializer(serializers.ModelSerializer):
         	'fecha',
         	'valoracion',
         	'denuncia',
+        	'estado'
+        	)
+
+class LugarDistanciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lugar
+        fields = (
+        	'id',
+        	'nombre',
+        	'direccion',
+        	'informacion_primaria',
+        	'longitud',
+        	'latitud',
+        	#'imagen',
+        	'fecha',
+        	'valoracion',
+        	'denuncia',
         	'estado',
         	'a_distancia_b'
         	)
