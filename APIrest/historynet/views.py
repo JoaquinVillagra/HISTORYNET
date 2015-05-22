@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.http import Http404
+from .coordenada import haversine
 
 #VERBOS
 
@@ -67,6 +68,11 @@ class LugaresCercanosView(APIView):
 
     def get(self,request,lat=None,log=None,dist=None,format=None):
         if lat != None and log != None and dist != None:
+            
+            lugares = Lugar.objects.all()
+            for lugar in lugares:
+                print lugar
+            
             return Response({'latitud':' '+lat,'longitud':' '+log,'distancia':' '+dist})
         else:
             raise Http404("Error")
