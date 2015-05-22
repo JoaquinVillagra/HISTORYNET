@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 class TestView(APIView):
-    def get(self,request,format=None):
-        return Response({'mensaje':'test API'})
+    def get(self,request,dato,format=None):
+        return Response({'mensaje':'test API = '+ dato})
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
