@@ -35,6 +35,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         	'estado',
         	'last_login',
         	)
+        read_only_fields = ('level','estado')
 
 class Informacion_adicionalSerializer(serializers.ModelSerializer):
 	class Meta:

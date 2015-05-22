@@ -6,6 +6,15 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 
+#VERBOS
+
+#GET (Obtener 1 o mas objetos)
+#POST (Crear 1 o mas objetos)
+#PUT, PATCH (modificar objetos)
+#DELETE (borrar 1 o mas objetos)
+
+
+
 
 #Vista donde se puede consultar por todos los usuarios o por
 #un usuario en especifico con el username (login) y retorna todos los datos.
@@ -25,6 +34,18 @@ class UsuarioView(APIView):
             many = True
         response = self.serializer_class(users,many=many)
         return Response(response.data)
+
+    def post(self,request,format=None):
+
+        new_user = self.serializer_class(data=request.DATA)
+        if new_user.is_valid():
+            obj = new_user.objects
+            obj.save()
+            resp = self.serializer_class(obj,many=False)
+            return Response(resp.data)
+        else:
+            return Response(new_user.errors)
+
 
 
 
