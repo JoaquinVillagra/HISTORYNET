@@ -6,8 +6,12 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 
+
 #Vista donde se puede consultar por todos los usuarios o por
-#un usuario en especifico con el username (login)
+#un usuario en especifico con el username (login) y retorna todos los datos.
+
+#http://46.101.184.198:8000/consultar_usuario/?format=json
+#http://46.101.184.198:8000/consultar_usuario/USERNAME/?format=json
 class UsuarioView(APIView):
     
     serializer_class = UsuarioSerializer
@@ -21,6 +25,8 @@ class UsuarioView(APIView):
             many = True
         response = self.serializer_class(users,many=many)
         return Response(response.data)
+
+
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
