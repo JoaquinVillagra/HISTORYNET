@@ -4,9 +4,21 @@ from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicion
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-class TestView(APIView):
-    def get(self,request,dato,format=None):
-        return Response({'mensaje':'test API = '+ dato})
+#Vista donde se puede consultar por todos los usuarios o por
+#un usuario en especifico con el username (login)
+class UsuarioView(APIView):
+    
+    serializer_class = UsuarioSerializer
+
+    def get(self,request,username=None,format=None):
+        if id != None: # Si no se ingresa ID en la url
+            users = get_object_or_404(Usuario,user_name=username)
+            many = False
+        else:
+            users = Usuario.objects.all()
+            many = True
+        response = self.serializer_class(users,many=many)
+        return Response(response.data)
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
