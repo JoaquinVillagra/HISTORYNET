@@ -19,7 +19,6 @@ from .coordenada import haversine
 
 #Vista donde se puede consultar por todos los usuarios o por
 #un usuario en especifico con el username (login) y retorna todos los datos.
-
 #http://46.101.184.198:8000/consultar_usuario/?format=json
 #http://46.101.184.198:8000/consultar_usuario/USERNAME/?format=json
 class UsuarioView(APIView):
@@ -48,6 +47,11 @@ class UsuarioView(APIView):
         #else:
             #return Response(new_user.errors)
 
+
+#Vista donde se pueden consultar todos los lugares o 
+#consultar un lugar especifico dado la id del lugar
+# http://46.101.184.198:8000/consultar_lugar/?format=json
+# http://46.101.184.198:8000/consultar_lugar/ID_LUGAR?format=json
 class LugarView(APIView):
 
     serializer_class = LugarSerializer
@@ -62,6 +66,11 @@ class LugarView(APIView):
         response = self.serializer_class(lugares,many=many)
         return Response(response.data)
 
+
+
+#Consulta de lugares cercanos
+#http://46.101.184.198:8000/consultar_lugar_cercano/LATITUD/LONGITUD/DISTANCIA?format=json
+#Ejem: http://46.101.184.198:8000/consultar_lugar_cercano/-33.83713/-70.73925/200/?format=json
 class LugaresCercanosView(APIView):
 
     serializer_class = LugarDistanciaSerializer
@@ -82,6 +91,12 @@ class LugaresCercanosView(APIView):
         else:
             raise Http404("Error")
 
+
+
+#Vista donde se consulta por todos los comentarios o por
+#los comentarios especificos de un lugar.
+# http://46.101.184.198:8000/consultar_comentarios/?format=json
+# http://46.101.184.198:8000/consultar_lugar_cercano/ID_LUGAR/?format=json
 class ComentarioView(APIView):
 
     serializer_class = ComentarioSerializer
