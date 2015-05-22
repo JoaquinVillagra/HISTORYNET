@@ -19,7 +19,7 @@ class UsuarioView(APIView):
         else:
             users = list(Usuario.objects.all())
             many = True
-            if not my_objects:
+            if not users:
                 raise Http404("No hay usuarios registrados.")
         response = self.serializer_class(users,many=many)
         return Response(response.data)
