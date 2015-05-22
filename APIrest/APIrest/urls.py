@@ -40,6 +40,7 @@ urlpatterns = [
 
     url(r'^consultar_lugar/$',views.LugarView.as_view()),
     url(r'^consultar_lugar/(?P<id>\d+)/$',views.LugarView.as_view()),
+    
     url(r'^consultar_lugar_cercano/(?P<lat>-?(\d+\.\d+))/(?P<log>-?(\d+\.\d+))/$',views.LugaresCercanosView.as_view()),
     
 

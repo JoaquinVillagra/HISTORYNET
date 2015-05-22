@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicionalSerializer, ComentarioSerializer, Lugares_favoritosSerializer, Valoraciones_comentariosSerializer, Valoraciones_info_adicionalSerializer, Valoraciones_lugarSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 from django.http import Http404
 
 #VERBOS
@@ -66,7 +66,7 @@ class LugaresCercanosView(APIView):
     serializer_class = LugarSerializer
 
     def get(self,request,lat=None,log=None,format=None):
-        if lat != None & log != None:
+        if lat != None && log != None:
             raise Http404("Bien test")
         else:
             raise Http404("Error")

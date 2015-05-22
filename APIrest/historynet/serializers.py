@@ -20,6 +20,14 @@ class UsuarioSerializer(serializers.ModelSerializer):
         	)
         read_only_fields = ('level','estado')
 
+class Usuario2Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = (
+        	'id',
+        	'nombre',
+        	'apellido',
+        	)
 
 class LugarSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,6 +46,13 @@ class LugarSerializer(serializers.ModelSerializer):
         	'estado'
         	)
 
+class Lugar2Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lugar
+        fields = (
+        	'id',
+        	'nombre',
+        	)
 
 class Informacion_adicionalSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -52,6 +67,9 @@ class Informacion_adicionalSerializer(serializers.ModelSerializer):
         	)
 
 class ComentarioSerializer(serializers.ModelSerializer):
+	
+	lugar_id = Lugar2Serializer(many=False,read_only=True)
+	user_id = Usuario2Serializer(many=False,read_only=True)
 	class Meta:
 		model = Comentario
 		fields = (
