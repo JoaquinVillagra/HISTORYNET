@@ -2,7 +2,7 @@
 
 from math import radians, cos, sin, asin, sqrt
 
-def haversine(lat1, lon1, lat2, lon2):
+def haversine(lon1, lat1, lon2, lat2):
 	lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
 	dlon = lon2 - lon1
 	dlat = lat2 - lat1
