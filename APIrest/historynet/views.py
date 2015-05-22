@@ -66,16 +66,16 @@ class LugaresCercanosView(APIView):
 
     serializer_class = LugarSerializer
 
-    def get(self,request,log=None,lat=None,dist=None,format=None):
+    def get(self,request,lat=None,log=None,dist=None,format=None):
         if lat != None and log != None and dist != None:
             
             lugares = Lugar.objects.all()
-            print log
             print lat
+            print log
             for lugar in lugares:
                 print lugar
+                print lugar.latitud
                 print lugar.longitud
-                print lugar.latitud 
                 print haversine(float(log),float(lat),float(lugar.longitud),float(lugar.latitud))
             
             return Response({'longitud':' '+log,'latitud':' '+lat,'distancia':' '+dist})
