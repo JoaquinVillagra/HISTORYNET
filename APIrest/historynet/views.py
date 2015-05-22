@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicionalSerializer, ComentarioSerializer, Lugares_favoritosSerializer, Valoraciones_comentariosSerializer, Valoraciones_info_adicionalSerializer, Valoraciones_lugarSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 #Vista donde se puede consultar por todos los usuarios o por
 #un usuario en especifico con el username (login)
