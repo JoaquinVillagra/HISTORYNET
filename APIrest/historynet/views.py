@@ -66,7 +66,7 @@ class LugaresCercanosView(APIView):
     serializer_class = LugarSerializer
 
     def get(self,request,lat=None,log=None,format=None):
-        if lat != None && log != None:
+        if lat != None and log != None:
             raise Http404("Bien test")
         else:
             raise Http404("Error")
