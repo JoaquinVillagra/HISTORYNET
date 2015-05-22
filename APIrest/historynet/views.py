@@ -55,7 +55,7 @@ class LugarView(APIView):
         if id != None:
             lugares = get_object_or_404(Lugar,pk=id)
             many = False
-        else
+        else:
             lugares = Lugar.objects.all()
             many = True
         response = self.serializer_class(lugares,many=many)
@@ -68,7 +68,7 @@ class LugaresCercanosView(APIView):
     def get(self,request,lat=None,log=None,format=None):
         if lat != None & log != None:
             raise Http404("Bien test")
-        else
+        else:
             raise Http404("Error")
 
 class ComentarioView(APIView):
@@ -78,7 +78,7 @@ class ComentarioView(APIView):
     def get(self,request,lugar_id=None,format=None):
         if lugar_id != None:
             comentarios = get_list_or_404(Comentario,lugar_id=lugar_id)
-        else
+        else:
             comentarios = Comentario.objects.all()
         response = self.serializer_class(comentarios,many=True)
         return Response(response.data)
