@@ -39,7 +39,7 @@ router.register(r'valoraciones_lugar', views.Valoraciones_lugarViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^consultar_usuario/(?P<dato>\w+)/$',views.UsuarioView.as_view()),
+    url(r'^consultar_usuario/(?P<username>\w+)/$',views.UsuarioView.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT})
