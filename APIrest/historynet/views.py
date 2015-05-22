@@ -39,7 +39,7 @@ class UsuarioView(APIView):
 
         new_user = self.serializer_class(data=request.DATA)
         if new_user.is_valid():
-            obj = new_user.objects
+            obj = new_user.object
             obj.save()
             resp = self.serializer_class(obj,many=False)
             return Response(resp.data)
