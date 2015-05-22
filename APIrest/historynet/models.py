@@ -50,7 +50,7 @@ class Lugar(models.Model):
 	valoracion = models.FloatField(default = 0)
 	denuncia = models.IntegerField(default = 0)
 	estado = models.SmallIntegerField(default = 2) # Un lugar debe ser validado por un administrador
-
+	a_distancia_b = models.FloatField(default = 0)
 	#def url_imagen(self):
 	#	return 'http://46.101.184.198:8000/media/%s' % self.imagen
 

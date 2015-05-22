@@ -74,7 +74,8 @@ class LugaresCercanosView(APIView):
             for lugar in lugares:
                 a = haversine(float(log),float(lat),float(lugar.longitud),float(lugar.latitud))
                 if a <= float(dist):
-                    lugar.a_distancia_b = a
+                    lugar.objects.update(a_distancia_b=a)
+                    lugar.save()
                     lugares_dist.append(lugar)
             response = self.serializer_class(lugares_dist,many=True)
             return Response(response.data)
