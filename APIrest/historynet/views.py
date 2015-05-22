@@ -1,6 +1,6 @@
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
 from rest_framework import viewsets
-from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicionalSerializer, ComentarioSerializer, Lugares_favoritosSerializer, Valoraciones_comentariosSerializer, Valoraciones_info_adicionalSerializer, Valoraciones_lugarSerializer
+from .serializers import UsuarioSerializer, LugarSerializer, LugarABSerializer, Informacion_adicionalSerializer, ComentarioSerializer, Lugares_favoritosSerializer, Valoraciones_comentariosSerializer, Valoraciones_info_adicionalSerializer, Valoraciones_lugarSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404, get_list_or_404
@@ -64,7 +64,7 @@ class LugarView(APIView):
 
 class LugaresCercanosView(APIView):
 
-    serializer_class = LugarSerializer
+    serializer_class = LugarABSerializer
 
     def get(self,request,lat=None,log=None,dist=None,format=None):
         if lat != None and log != None and dist != None:
@@ -74,6 +74,7 @@ class LugaresCercanosView(APIView):
             for lugar in lugares:
                 a = haversine(float(log),float(lat),float(lugar.longitud),float(lugar.latitud))
                 if a <= float(dist):
+                    lugar.a_distancia_b = a
                     lugares_dist.append(lugar)
             response = self.serializer_class(lugares_dist,many=True)
             return Response(response.data)
