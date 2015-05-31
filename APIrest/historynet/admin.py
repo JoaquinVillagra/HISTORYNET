@@ -1,19 +1,12 @@
 from django.contrib import admin
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
 
-class LugarAdmin(admin.ModelAdmin):
-	#list_display = ('nombre','informacion_primaria','imagen_lugar')
-	list_display = ('id','nombre','informacion_primaria','latitud','longitud','estado')
-
-	#def imagen_lugar(self, lugar):
-	#	url = lugar.url_imagen()
-	#	tag = "<img src='%s' >" % url
-	#	return tag
-
-	#imagen_lugar.allow_tags = True
 
 class UsuarioAdmin(admin.ModelAdmin):
 	list_display = ('id','user_name','password','nombre','apellido','level','estado')
+
+class LugarAdmin(admin.ModelAdmin):
+	list_display = ('id','nombre','informacion_primaria','latitud','longitud','estado')
 
 class Informacion_adicionalAdmin(admin.ModelAdmin):
 	list_display = ('id','lugar_id','mensaje','estado')

@@ -18,16 +18,16 @@ from django.db import models
 
 
 class Usuario(models.Model):
-	user_name = models.CharField(max_length = 50, unique = True)
-	password = models.CharField(max_length = 50)
-	email = models.CharField(max_length = 100)
-	nombre = models.CharField(max_length = 150)
-	apellido = models.CharField(max_length = 150)
-	pais = models.CharField(max_length = 15)
+	user_name = models.CharField(max_length = 24, unique = True)
+	password = models.CharField(max_length = 24)
+	email = models.CharField(max_length = 50)
+	nombre = models.CharField(max_length = 50)
+	apellido = models.CharField(max_length = 50)
 	sexo = models.CharField(max_length = 1)
+	pais = models.CharField(max_length = 20)
+	ciudad = models.CharField(max_length = 20)
 	level = models.SmallIntegerField(default = 0)
 	estado = models.SmallIntegerField(default = 1)
-	last_login = models.DateTimeField(auto_now = True)
 	
 	def get_full_name(self):
 		return (self.nombre + " " + self.apellido)
@@ -40,33 +40,33 @@ class Usuario(models.Model):
 
 
 class Lugar(models.Model):
-	nombre = models.CharField(max_length = 150)
-	direccion = models.CharField(max_length = 1024)
+	nombre = models.CharField(max_length = 50)
+	direccion = models.CharField(max_length = 200)
 	informacion_primaria = models.CharField(max_length = 1024)
-	longitud = models.FloatField()
 	latitud = models.FloatField()
-	#imagen = models.ImageField(upload_to = 'foto_lugar')
+	longitud = models.FloatField()
 	fecha = models.DateTimeField(auto_now_add = True)
-	valoracion = models.FloatField(default = 0)
+	cant_valoracion = models.IntegerField(default = 0)
+	prom_valoracion = models.FloatField(default = 0)
 	denuncia = models.IntegerField(default = 0)
-	estado = models.SmallIntegerField(default = 2) # Un lugar debe ser validado por un administrador
+	estado = models.SmallIntegerField(default = 2)
 	a_distancia_b = models.FloatField(default = 0)
-	#def url_imagen(self):
-	#	return 'http://46.101.184.198:8000/media/%s' % self.imagen
-
+	
 	def __unicode__(self):
 		return self.nombre
 
 	class Meta:
-		ordering = ('nombre',)
+		ordering = ('fecha',)
 
 
 class Informacion_adicional(models.Model):
-	lugar_id = models.ForeignKey(Lugar) #relacion 1 a muchos entre lugar e informacion add
+	lugar_id = models.ForeignKey(Lugar) 
 	mensaje = models.CharField(max_length = 1024)
 	fecha = models.DateTimeField(auto_now_add = True)
+	cant_valoracion = models.IntegerField(default = 0)
+	prom_valoracion = models.FloatField(default = 0)
 	denuncia = models.IntegerField(default = 0)
-	estado = models.SmallIntegerField(default = 2) # Una informacion adicional debe ser validada por un administrador
+	estado = models.SmallIntegerField(default = 2)
 	
 	def __unicode__(self):
 		return self.mensaje
@@ -76,11 +76,12 @@ class Informacion_adicional(models.Model):
 
 
 class Comentario(models.Model):
-	user_id = models.ForeignKey(Usuario) #relacion entre usuario y comentario (un user puede hacer varios comentarios)
-	lugar_id = models.ForeignKey(Lugar) #relacion entre lugar y comentario (Un lugar puede tener varios comentarios)
+	user_id = models.ForeignKey(Usuario)
+	lugar_id = models.ForeignKey(Lugar)
 	mensaje = models.CharField(max_length = 1024)
 	fecha = models.DateTimeField(auto_now_add = True)
-	valoracion = models.FloatField(default = 0)
+	cant_valoracion = models.IntegerField(default = 0)
+	prom_valoracion = models.FloatField(default = 0)
 	denuncia = models.IntegerField(default = 0)
 	estado = models.SmallIntegerField(default = 1)
 
@@ -92,21 +93,21 @@ class Comentario(models.Model):
 
 
 class Lugares_favoritos(models.Model):
-	user_id = models.ForeignKey(Usuario) #relacion n a n entre lugares y usuarios para registro de favoritos
+	user_id = models.ForeignKey(Usuario) 
 	lugar_id = models.ForeignKey(Lugar)
 
 class Valoraciones_comentarios(models.Model):
-	user_id = models.ForeignKey(Usuario) #relacion 1 a 1 entre usuario y comentario para registro de valoracion
+	user_id = models.ForeignKey(Usuario) 
 	comentario_id = models.ForeignKey(Comentario)
 	valoracion = models.IntegerField()
 
 class Valoraciones_info_adicional(models.Model):
-	user_id = models.ForeignKey(Usuario) #relacion 1 a 1 entre usuario e info add para registro de valoracion
+	user_id = models.ForeignKey(Usuario) 
 	info_adicional_id = models.ForeignKey(Informacion_adicional)
 	valoracion = models.IntegerField()
 
 class Valoraciones_lugar(models.Model):
-	user_id = models.ForeignKey(Usuario) #relacion 1 a 1 entre usuario y lugar para registro de valoracion
+	user_id = models.ForeignKey(Usuario) 
 	lugar_id = models.ForeignKey(Lugar)
 	valoracion = models.IntegerField()
 

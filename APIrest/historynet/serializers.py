@@ -13,10 +13,10 @@ class UsuarioSerializer(serializers.ModelSerializer):
         	'nombre',
         	'apellido',
         	'pais',
+            'ciudad',
         	'sexo',
         	'level',
         	'estado',
-        	'last_login',
         	)
         read_only_fields = ('level','estado')
 
@@ -39,12 +39,20 @@ class LugarSerializer(serializers.ModelSerializer):
         	'informacion_primaria',
         	'longitud',
         	'latitud',
-        	#'imagen',
         	'fecha',
-        	'valoracion',
+            'cant_valoracion',
+        	'prom_valoracion',
         	'denuncia',
         	'estado'
         	)
+        read_only_fields = (
+            'fecha',
+            'cant_valoracion',
+            'prom_valoracion',
+            'denuncia',
+            'estado'
+            )
+
 
 class LugarDistanciaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -56,9 +64,9 @@ class LugarDistanciaSerializer(serializers.ModelSerializer):
         	'informacion_primaria',
         	'longitud',
         	'latitud',
-        	#'imagen',
         	'fecha',
-        	'valoracion',
+            'cant_valoracion',
+        	'prom_valoracion',
         	'denuncia',
         	'estado',
         	'a_distancia_b'
@@ -79,10 +87,19 @@ class Informacion_adicionalSerializer(serializers.ModelSerializer):
 			'id',
         	'lugar_id',
         	'mensaje',
-        	'fecha',
-        	'denuncia',
+            'fecha',
+        	'cant_valoracion',
+            'prom_valoracion',
+            'denuncia',
         	'estado',
         	)
+        read_only_fields = (
+            'fecha',
+            'cant_valoracion',
+            'prom_valoracion',
+            'denuncia',
+            'estado'
+            )
 
 class ComentarioSerializer(serializers.ModelSerializer):
 	
@@ -96,10 +113,18 @@ class ComentarioSerializer(serializers.ModelSerializer):
 			'lugar_id',
 			'mensaje',
 			'fecha',
-			'valoracion',
-			'denuncia',
+			'cant_valoracion',
+            'prom_valoracion',
+            'denuncia',
 			'estado',
 			)
+        read_only_fields = (
+            'fecha',
+            'cant_valoracion',
+            'prom_valoracion',
+            'denuncia',
+            'estado'
+            )
 
 class Lugares_favoritosSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -115,6 +140,7 @@ class Valoraciones_comentariosSerializer(serializers.ModelSerializer):
 		model = Valoraciones_lugar
 		fields = (
 			'id',
+            'user_id',
 			'comentario_id',
 			'valoracion',
 			)
