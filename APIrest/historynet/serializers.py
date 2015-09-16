@@ -1,5 +1,12 @@
+serializers.py
+
+Los serializadores permiten que los datos complejos como "Querrys" a la database o instancias de los tipo Models sean 
+convertido en los tipo de datos de Python nativos que luego pueden ser fácilmente trasmitidas en JSON u otro tipo de contenido.
+
+
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
 from rest_framework import serializers
+
 
 
 class UsuarioSerializer(serializers.ModelSerializer):
@@ -39,6 +46,7 @@ class LugarSerializer(serializers.ModelSerializer):
         	'informacion_primaria',
         	'longitud',
         	'latitud',
+            'tag',
         	'fecha',
             'cant_valoracion',
         	'prom_valoracion',
@@ -64,6 +72,7 @@ class LugarDistanciaSerializer(serializers.ModelSerializer):
         	'informacion_primaria',
         	'longitud',
         	'latitud',
+            'tag',
         	'fecha',
             'cant_valoracion',
         	'prom_valoracion',

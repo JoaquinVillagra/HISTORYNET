@@ -1,3 +1,12 @@
+models.py
+
+Un modelo es la única fuente de información sobre su base de datos.
+Contiene los campos esencialesy los comportamientos de los datos que se está almacenando.
+En general, cada modelo se asigna a una sola tabla de base datos.
+Cada modelo es una clase Python que hereda de django.db.models.Model
+Cada atributo del modelo representa un campo de base de datos.
+Con todo esto, Django proporciona una API de base de datos generada automáticamente.
+
 # Falta CS-014, CS-018 , CS-021, CS-022 en el modelado de database.
 # http://prntscr.com/75azso
 
@@ -45,6 +54,7 @@ class Lugar(models.Model):
 	informacion_primaria = models.CharField(max_length = 1024)
 	latitud = models.FloatField()
 	longitud = models.FloatField()
+	tag = models.CharField(max_length = 1024)
 	fecha = models.DateTimeField(auto_now_add = True)
 	cant_valoracion = models.IntegerField(default = 0)
 	prom_valoracion = models.FloatField(default = 0)
