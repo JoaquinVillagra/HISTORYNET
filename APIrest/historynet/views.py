@@ -14,13 +14,6 @@ from .coordenada import haversine
 #PUT, PATCH (modificar objetos)
 #DELETE (borrar 1 o mas objetos)
 
-views.py
-
-Una "views" o vistas es simplemente una función en Python que toma un una petición web y responde con una respuesta web.
-Las respuesta será en muchos formatos, pero el que se usará en la aplicación será JSON.
-Django Rest Framework proporciona una clase que heredan las funciones llamada "APIView", que además de procesar los "request/response", provee de una interfaz
-donde se puede realizar consultas a la API generada.
-
 
 #Vista donde se puede consultar por todos los usuarios o por
 #un usuario en especifico con el username (login) y retorna todos los datos.
