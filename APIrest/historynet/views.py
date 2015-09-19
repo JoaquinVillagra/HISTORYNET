@@ -63,7 +63,16 @@ class LugarView(APIView):
             many = True
         response = self.serializer_class(lugares,many=many)
         return Response(response.data)
-
+    
+    def post(self,request,format=None):
+        new_lugar = self.serializer_class(data=request.DATA)
+        if new_lugar.is_valid():
+            obj = new_lugar.object
+            obj.save()
+            resp = self.serializer_class(obj,many=False)
+            return Response(resp.data)
+        else:
+            return Response(new_lugar.errors)
 
 
 #Consulta de lugares cercanos
