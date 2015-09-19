@@ -1,5 +1,5 @@
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicionalSerializer, ComentarioSerializer, Lugares_favoritosSerializer, Valoraciones_comentariosSerializer, Valoraciones_info_adicionalSerializer, Valoraciones_lugarSerializer, LugarDistanciaSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -44,6 +44,10 @@ class UsuarioView(APIView):
             #return Response(resp.data)
         #else:
             #return Response(new_user.errors)
+
+class LugarViewAgregar(generics.ListCreateAPIView):
+    queryset = Lugar.objects.all()
+    serializer_class = LugarSerializer
 
 
 #Vista donde se pueden consultar todos los lugares o 
