@@ -68,13 +68,7 @@ class LugarView(APIView):
         response = self.serializer_class(lugares,many=many)
         return Response(response.data)
     
-    def post(self,request,format=None):
-        new_lugar = self.serializer_class(data=request.DATA)
-        if new_lugar.is_valid():
-            new_lugar.save()
-            return Response(new_lugar.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(new_lugar.errors, status=HTTP_400_BAD_REQUEST)
+   
 
 
 #Consulta de lugares cercanos
