@@ -1,9 +1,9 @@
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from .serializers import UsuarioSerializer, LugarSerializer, Informacion_adicionalSerializer, ComentarioSerializer, Lugares_favoritosSerializer, Valoraciones_comentariosSerializer, Valoraciones_info_adicionalSerializer, Valoraciones_lugarSerializer, LugarDistanciaSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404, render
 from django.http import Http404
 from .coordenada import haversine
 
@@ -67,12 +67,10 @@ class LugarView(APIView):
     def post(self,request,format=None):
         new_lugar = self.serializer_class(data=request.DATA)
         if new_lugar.is_valid():
-            obj = new_lugar.object
-            obj.save()
-            resp = self.serializer_class(obj,many=False)
-            return Response(resp.data)
+            new_lugar.save()
+            return Response(new_lugar.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(new_lugar.errors)
+            return Response(new_lugar.errors, status=HTTP_400_BAD_REQUEST)
 
 
 #Consulta de lugares cercanos

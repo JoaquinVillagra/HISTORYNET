@@ -54,6 +54,14 @@ class LugarSerializer(serializers.ModelSerializer):
             'denuncia',
             'estado'
             )
+    def create(validated_data):
+            nombre = validated_data.get('nombre', None)
+            direccion = validated_data.get('direccion', None)
+            informacion_primaria = validated_data.get('informacion_primaria', None)
+            latitud = validated_data.get('latitud', None)
+            longitud = validated_data.get('longitud', None)
+            tag = validated_data.get('tag', None)
+            return Lugar.objects.create(nombre=nombre,direccion=direccion,informacion_primaria=informacion_primaria,latitud=latitud,longitud=longitud,tag=tag)
 
 
 class LugarDistanciaSerializer(serializers.ModelSerializer):
