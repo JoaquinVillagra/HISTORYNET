@@ -130,3 +130,22 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = RUTA_PROYECTO.child('media')
 
 MEDIA_URL = '/media/'
+
+LOGGING = {
+ 'version': 1,
+ 'disable_existing_loggers': False,
+ 'handlers': {
+   'console': {
+     'level': 'ERROR',
+     'class': 'logging.StreamHandler',
+     'stream': sys.stderr
+   },
+  },
+ 'loggers': {
+   'django.request': {
+     'handlers': ['console'],
+     'propogate': True,
+     'level': 'ERROR',
+   }
+ }
+}
