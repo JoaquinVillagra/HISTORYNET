@@ -129,4 +129,4 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = RUTA_PROYECTO.child('media')
 
-MEDIA_URL = ''
+MEDIA_URL = '/media/'

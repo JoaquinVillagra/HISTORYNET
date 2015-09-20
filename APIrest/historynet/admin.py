@@ -6,7 +6,7 @@ class UsuarioAdmin(admin.ModelAdmin):
 	list_display = ('id','user_name','password','nombre','apellido','level','estado')
 
 class LugarAdmin(admin.ModelAdmin):
-	list_display = ('id','nombre','informacion_primaria','latitud','longitud','estado')
+	list_display = ('id','nombre','informacion_primaria','latitud','longitud','tag','imagen','estado')
 
 class Informacion_adicionalAdmin(admin.ModelAdmin):
 	list_display = ('id','lugar_id','mensaje','estado')

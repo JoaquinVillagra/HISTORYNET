@@ -46,6 +46,7 @@ class Lugar(models.Model):
 	latitud = models.FloatField()
 	longitud = models.FloatField()
 	tag = models.CharField(max_length = 1024)
+	imagen = models.ImageField(upload_to = 'fotos_lugar')
 	fecha = models.DateTimeField(auto_now_add = True)
 	cant_valoracion = models.IntegerField(default = 0)
 	prom_valoracion = models.FloatField(default = 0)
