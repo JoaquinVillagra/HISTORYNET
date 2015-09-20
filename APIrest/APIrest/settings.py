@@ -131,6 +131,7 @@ MEDIA_ROOT = RUTA_PROYECTO.child('media')
 
 MEDIA_URL = '/media/'
 
+import sys
 LOGGING = {
  'version': 1,
  'disable_existing_loggers': False,
