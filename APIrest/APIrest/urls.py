@@ -1,6 +1,3 @@
-#url.py se define el formato de las URLs a ser usados por el protocolo HTTP en Android.
-
-
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
 admin.autodiscover()
@@ -9,6 +6,8 @@ from rest_framework import routers
 from historynet import views
 from rest_framework.urlpatterns import format_suffix_patterns
 router = routers.DefaultRouter()
+
+#Se define el formato de las URLs a ser usados por el protocolo HTTP en Android.
 
 
 
