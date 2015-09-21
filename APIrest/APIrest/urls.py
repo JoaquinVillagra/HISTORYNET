@@ -1,3 +1,6 @@
+#url.py se define el formato de las URLs a ser usados por el protocolo HTTP en Android.
+
+
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
 admin.autodiscover()
@@ -5,10 +8,7 @@ from django.conf import settings
 from rest_framework import routers
 from historynet import views
 from rest_framework.urlpatterns import format_suffix_patterns
-
-# Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-#router.register(r'usuario', views.UsuarioViewSet)
 
 
 
@@ -39,12 +39,8 @@ router = routers.DefaultRouter()
 #CONSULTAR POR LOS LUGARES CERCANOS A CIERTA DISTANCIA DADA UNA
 #UBICACION EN LATITUD Y LONGITUD
 #cambiar LATITUD, LONGITUD, KILOMETROS_A_LA_REDONDA por los datos reales.
-#url = URL_PATH + "consultar_lugar_cercano/LATITUD/LONGITUD/KILOMETROS_A_LA_REDONDA/" + JSON_PATH
+#url = URL_PATH + "consultar_lugar_cercano/LATITUD/LONGITUD/METROS_A_LA_REDONDA/" + JSON_PATH
 
-
-
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^consultar_usuario/$',views.UsuarioView.as_view()),

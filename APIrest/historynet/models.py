@@ -1,21 +1,7 @@
-# Falta CS-014, CS-018 , CS-021, CS-022 en el modelado de database.
-# http://prntscr.com/75azso
+#models.py es la representación de la database en formato django.
 
 from django.db import models
  
-# El campo "level" representa jerarquia de usuario (el numero de cada uno es solo una idea)
-# 0 = usuario normal
-# 1 = super usuario (ideas pero nada especial)
-# 4 = moderador (ideas pero nada especial)
-# 5 = administrador
-
-
-# El campo "estado" tiene distintos valores de representacion:
-# 0 = desactivado por usuario (only login)
-# 1 = habilitado
-# 2 = en pedido de habilitacion
-# 3 = bloqueado por admin
-
 
 class Usuario(models.Model):
 	user_name = models.CharField(max_length = 24, unique = True)
