@@ -2,56 +2,66 @@ from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_f
 from rest_framework import serializers
 
 
+import base64
+import binascii
+import imghdr
+import uuid
+import sys
+from django.core.exceptions import ValidationError
+from django.core.files.base import ContentFile
+from django.utils import six
+from django.utils.translation import ugettext_lazy as _
 
-class Base64ImageField(serializers.ImageField):
+from rest_framework.fields import ImageField
+
+
+DEFAULT_CONTENT_TYPE = "application/octet-stream"
+ALLOWED_IMAGE_TYPES = (
+    "jpeg",
+    "jpg",
+    "png",
+    "gif"
+)
+
+EMPTY_VALUES = (None, '', [], (), {})
+
+
+class Base64ImageField(ImageField):
     """
-    A Django REST framework field for handling image-uploads through raw post data.
-    It uses base64 for encoding and decoding the contents of the file.
-
-    Heavily based on
-    https://github.com/tomchristie/django-rest-framework/pull/1268
-
-    Updated for Django REST framework 3.
+    A django-rest-framework field for handling image-uploads through raw post data.
+    It uses base64 for en-/decoding the contents of the file.
     """
-
-    def to_internal_value(self, data):
-        from django.core.files.base import ContentFile
-        import base64
-        import django.utils.six
-        import uuid
-
+    def to_internal_value(self, base64_data):
         # Check if this is a base64 string
-        if isinstance(data, six.string_types):
-            # Check if the base64 string is in the "data:" format
-            if 'data:' in data and ';base64,' in data:
-                # Break out the header from the base64 content
-                header, data = data.split(';base64,')
+        if base64_data in EMPTY_VALUES:
+            return None
 
+        if isinstance(base64_data, six.string_types):
             # Try to decode the file. Return validation error if it fails.
             try:
-                decoded_file = base64.b64decode(data)
-            except TypeError:
-                self.fail('invalid_image')
-
+                decoded_file = base64.b64decode(base64_data)
+            except (TypeError, binascii.Error):
+                raise ValidationError(_("Please upload a valid image."))
             # Generate file name:
-            file_name = str(uuid.uuid4())[:12] # 12 characters are more than enough.
+            file_name = str(uuid.uuid4())[:12]  # 12 characters are more than enough.
             # Get the file name extension:
             file_extension = self.get_file_extension(file_name, decoded_file)
-
-            complete_file_name = "%s.%s" % (file_name, file_extension, )
-
+            if file_extension not in ALLOWED_IMAGE_TYPES:
+                raise ValidationError(_("The type of the image couldn't been determined."))
+            complete_file_name = file_name + "." + file_extension
             data = ContentFile(decoded_file, name=complete_file_name)
+            return super(Base64ImageField, self).to_internal_value(data)
+        raise ValidationError(_('This is not an base64 string'))
 
-        return super(Base64ImageField, self).to_internal_value(data)
+    def to_representation(self, value):
+        # Return url including domain name.
+        return value.name
 
-    def get_file_extension(self, file_name, decoded_file):
-        import imghdr
-
-        extension = imghdr.what(file_name, decoded_file)
+    def get_file_extension(self, filename, decoded_file):
+        extension = imghdr.what(filename, decoded_file)
         extension = "jpg" if extension == "jpeg" else extension
-
         return extension
-
+        
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
