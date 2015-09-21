@@ -1,5 +1,3 @@
-#models.py es la representación de la database en formato django.
-
 from django.db import models
  
 
