@@ -17,7 +17,7 @@ class Base64ImageField(serializers.ImageField):
     def to_internal_value(self, data):
         from django.core.files.base import ContentFile
         import base64
-        import six
+        import django.utils.six
         import uuid
 
         # Check if this is a base64 string
