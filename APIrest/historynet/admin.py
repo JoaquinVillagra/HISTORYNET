@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import Usuario, Lugar, Informacion_adicional, Comentario, Lugares_favoritos, Valoraciones_comentarios, Valoraciones_info_adicional, Valoraciones_lugar
 
-#Se definen que modelos son mostrados en la sección de Administración default que implementa django. 
-#Este puede ser usado para testear los diferentes modelos.
-
 
 class UsuarioAdmin(admin.ModelAdmin):
 	list_display = ('id','user_name','password','nombre','apellido','level','estado')

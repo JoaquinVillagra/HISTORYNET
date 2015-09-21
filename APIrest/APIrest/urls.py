@@ -7,9 +7,6 @@ from historynet import views
 from rest_framework.urlpatterns import format_suffix_patterns
 router = routers.DefaultRouter()
 
-#Se define el formato de las URLs a ser usados por el protocolo HTTP en Android.
-
-
 
 #URL_PATH = "http://46.101.184.198:8000/"
 #JSON_PATH = "?format=json"
